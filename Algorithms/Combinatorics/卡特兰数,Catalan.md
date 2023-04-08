@@ -17,30 +17,31 @@ $$
 板子：
 
 ```cpp
-int C[30];
-void getCatalan(int n) {
-    C[0] = 1;
-    C[1] = 1;
-    for (int i = 2; i <= n; i++)
-        for (int j = 0; j < i; j++)
-            C[i] += C[j] * C[i - j - 1];
+namespace Catalan {
+    LL C[MAXN];
+    void init(int n) {
+        C[0] = C[1] = 1;
+        for (int i = 2; i <= n; i++)
+            C[i] = C[i - 1] * (4 * i - 2) / (i + 1);
+    }
 }
 ```
 
 使用：
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define endl '\n'
 using namespace std;
 typedef long long LL;
 typedef unsigned long long uLL;
-int C[30];
-void getCatalan(int n);
-int n;
+const int MAXN = 18 + 100;
+
 int main() {
-    cin>>n;
-    getCatalan(n);
-    cout<<C[n];
+    int n;
+    cin >> n;
+    Catalan::init(n);
+    cout << Catalan::C[n] << endl;
     return 0;
 }
 ```
