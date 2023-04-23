@@ -11,7 +11,7 @@ $$
 C_n=C_{n-1}\times\dfrac{4n-2}{n+1}
 $$
 $$
-C_n=\dfrac{C_{2n}^n}{n+1}
+C_n=\dfrac{\dbinom {2n} n}{n+1}
 $$
 
 板子：

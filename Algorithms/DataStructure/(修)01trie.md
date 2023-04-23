@@ -1,4 +1,4 @@
-模板题目：[P4551 最长异或路径](https://www.luogu.com.cn/problem/P4551)
+题目：[P4551 最长异或路径](https://www.luogu.com.cn/problem/P4551)
 
 题解：深基P109
 

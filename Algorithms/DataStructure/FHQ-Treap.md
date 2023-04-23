@@ -5,7 +5,7 @@
 板子：
 
 ```cpp
-namespace fhqTreap {
+struct FHQTreap {
     int val[MAXN], wei[MAXN], siz[MAXN], son[MAXN][2];
     int tot, root;
     void pushup(int u) {
@@ -80,53 +80,44 @@ namespace fhqTreap {
     int queryNext(int k) {
         return queryVal(queryRank(k + 1));
     }
-}
+};
 ```
 
 使用：
 
 ```cpp
 #include <bits/stdc++.h>
+#define endl '\n'
 using namespace std;
 typedef long long LL;
 typedef unsigned long long uLL;
 typedef pair<int, int> pii;
-int read() {
-    int ret = 0, sgn = 0, ch = getchar();
-    while (!isdigit(ch)) sgn |= ch == '-', ch = getchar();
-    while (isdigit(ch)) ret = ret * 10 + ch - '0', ch = getchar();
-    return sgn ? -ret : ret;
-}
-void write(int x) {
-    if (x < 0) putchar('-'), x = -x;
-    if (x > 9) write(x / 10);
-    putchar(x % 10 + '0');
-}
+
 const int MAXN = 1e6 + 1e5 + 5;
 
+FHQTreap F;
 int n, m, last, ans;
 int main() {
-    srand(time(0));
     n = read(); m = read();
     for (int i = 1; i <= n; i++)
-        fhqTreap::insert(read());
+        F.insert(read());
     while (m--) {
         int opt = read();
         int x = read() ^ last;
         if (opt == 1)
-            fhqTreap::insert(x);
+            F.insert(x);
         else if (opt == 2)
-            fhqTreap::del(x);
+            F.del(x);
         else if (opt == 3)
-            last = fhqTreap::queryRank(x), ans ^= last;
+            last = F.queryRank(x), ans ^= last;
         else if (opt == 4)
-            last = fhqTreap::queryVal(x), ans ^= last;
+            last = F.queryVal(x), ans ^= last;
         else if (opt == 5)
-            last = fhqTreap::queryPrev(x), ans ^= last;
+            last = F.queryPrev(x), ans ^= last;
         else if (opt == 6)
-            last = fhqTreap::queryNext(x), ans ^= last;
+            last = F.queryNext(x), ans ^= last;
     }
-    write(ans);
+    write(ans, '\n');
     return 0;
 }
 ```

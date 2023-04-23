@@ -4,6 +4,6 @@
 LL highbit(LL x) {
     if (x == 0)
         return 0;
-    return 1ll<<int(log2(x));
+    return 1ll << int(log2(x));
 }
 ```
