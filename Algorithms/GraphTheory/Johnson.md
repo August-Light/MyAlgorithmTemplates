@@ -13,24 +13,23 @@ const int MAXN = 3e3 + 100;
 const int MAXM = 6e3 + 100 + MAXN;
 const int INF = 1e9;
 
-Graph g;
 
 int main() {
     int n, m;
     cin >> n >> m;
     for (int i = 1, u, v, w; i <= m; i++) {
         cin >> u >> v >> w;
-        g.addedge(u, v, w);
+        addedge(u, v, w);
     }
     for (int i = 1; i <= n; i++)
-        g.addedge(0, i, 0);
+        addedge(0, i, 0);
     if (!SPFA::SPFA(n, 0)) {
         puts("-1");
         return 0;
     }
     for (int u = 1; u <= n; u++)
-        for (int i = g.head[u]; i; i = g.e[i].nxt)
-            g.e[i].val += SPFA::dis[u] - SPFA::dis[g.e[i].to];
+        for (int i = head[u]; i; i = e[i].nxt)
+            e[i].val += SPFA::dis[u] - SPFA::dis[e[i].to];
     for (int i = 1; i <= n; i++) {
         Dijkstra::Dijkstra(n, i);
         LL ret = 0, ans = 0;

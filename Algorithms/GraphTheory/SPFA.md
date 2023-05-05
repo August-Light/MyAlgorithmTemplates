@@ -9,7 +9,6 @@
 板子：
 
 ```cpp
-Graph g;
 namespace SPFA {
     int dis[MAXN], cnt[MAXN];
     bool vis[MAXN];
@@ -23,8 +22,8 @@ namespace SPFA {
         while (!q.empty()) {
             int u = q.front(); q.pop();
             vis[u] = 0;
-            for (int i = g.head[u]; i; i = g.e[i].nxt) {
-                Edge edge = g.e[i];
+            for (int i = head[u]; i; i = e[i].nxt) {
+                Edge edge = e[i];
                 if (dis[edge.to] > (LL)dis[u] + edge.val) { // relax
                     dis[edge.to] = dis[u] + edge.val;
                     if (!vis[edge.to]) {
@@ -61,7 +60,7 @@ int main() {
     cin >> n >> m >> s;
     for (int i = 1, u, v, w; i <= m; i++) {
         cin >> u >> v >> w;
-        g.addedge(u, v, w);
+        addedge(u, v, w);
     }
     SPFA::SPFA(n, s);
     for (int i = 1; i <= n; i++)
@@ -87,13 +86,13 @@ int main() {
     cin >> t;
     while (t--) {
         int n, m;
-        g.init();
+        graph_init();
         cin >> n >> m;
         for (int i = 1, u, v, w; i <= m; i++) {
             cin >> u >> v >> w;
-            g.addedge(u, v, w);
+            addedge(u, v, w);
             if (w >= 0)
-                g.addedge(v, u, w);
+                addedge(v, u, w);
         }
         if (!SPFA::SPFA(n, 1))
             puts("YES");

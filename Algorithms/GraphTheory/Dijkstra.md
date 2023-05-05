@@ -2,12 +2,13 @@
 
 [P4779 【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)
 
-题解：深进P151
+题解：深进 P151
+
+使用场景：非负权图。
 
 板子：
 
 ```cpp
-Graph g;
 namespace Dijkstra {
     int dis[MAXN];
     bool vis[MAXN];
@@ -30,8 +31,8 @@ namespace Dijkstra {
             if (vis[u])
                 continue;
             vis[u] = 1;
-            for (int i = g.head[u]; i; i = g.e[i].nxt) {
-                Edge edge = g.e[i];
+            for (int i = head[u]; i; i = e[i].nxt) {
+                Edge edge = e[i];
                 if (dis[edge.to] > (LL)dis[u] + edge.val) { // relax
                     dis[edge.to] = dis[u] + edge.val;
                     q.push(Node(edge.to, dis[edge.to]));
@@ -48,7 +49,6 @@ namespace Dijkstra {
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long LL;
-typedef unsigned long long uLL;
 const int INF = INT_MAX;
 const int MAXN = 1e5 + 100;
 const int MAXM = 2e5 + 100;
@@ -59,7 +59,7 @@ int main() {
     cin >> n >> m >> s;
     for (int i = 1, u, v, w; i <= m; i++) {
         cin >> u >> v >> w;
-        g.addedge(u, v, w);
+        addedge(u, v, w);
     }
     Dijkstra::Dijkstra(n, s);
     for (int i = 1; i <= n; i++)
