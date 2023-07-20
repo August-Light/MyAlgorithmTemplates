@@ -7,7 +7,7 @@
 ```cpp
 LL BSGS(LL a, LL b, LL m) {
     umap<LL, LL> hs; hs.clear();
-    LL cur = 1, t = sqrt(m);
+    LL cur = 1, t = sqrt(m) + 1; // 取 sqrt(m) 会 WA
     for (LL B = 1; B <= t; B++) {
         (cur *= a) %= m;
         hs[b * cur % m] = B;
